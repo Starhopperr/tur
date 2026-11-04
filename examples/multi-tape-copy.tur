@@ -1,0 +1,17 @@
+name: Multi-Tape Copy
+heads: [0, 0]
+tapes:
+  [a, b, c]
+  [_, _, _]
+rules:
+  start:
+    [a, _] -> [a, a], [R, R], start
+    [b, _] -> [b, b], [R, R], start
+    [c, _] -> [c, c], [R, R], start
+    [_, _] -> [_, _], [L, L], rewind
+  rewind:
+    [a, a] -> [a, a], [L, L], rewind
+    [b, b] -> [b, b], [L, L], rewind
+    [c, c] -> [c, c], [L, L], rewind
+    [_, _] -> [_, _], [S, S], halt
+  halt:
